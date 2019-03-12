@@ -1,3 +1,5 @@
+package Engine;
+
 import Engine.Color;
 import org.junit.jupiter.api.Test;
 

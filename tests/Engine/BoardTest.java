@@ -1,3 +1,5 @@
+package Engine;
+
 import Engine.Board;
 import Engine.Tile;
 import org.junit.jupiter.api.Test;

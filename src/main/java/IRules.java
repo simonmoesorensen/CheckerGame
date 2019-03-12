@@ -1,0 +1,3 @@
+interface IRules {
+    void checkRules();
+}

@@ -5,9 +5,9 @@ public class ToTileChecker extends TileChecker {
         super(tile);
     }
 
-    public void checkVacancy() throws OccupiedTileException {
+    void checkVacancy() throws OccupiedTileException {
         if (this.getTile() instanceof OccupiedTile) {
-            throw new OccupiedTileException(String.format("Engine.Tile (%d, %d) is occupied",
+            throw new OccupiedTileException(String.format("Tile (%d, %d) is occupied",
                     this.getTile().getX() + 1, this.getTile().getY() + 1));
         }
     }

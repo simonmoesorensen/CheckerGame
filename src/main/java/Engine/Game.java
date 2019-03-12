@@ -26,6 +26,10 @@ public class Game {
 
     }
 
+    Player[] getPlayers() {
+        return players;
+    }
+
     public Player getPlayer() {
         return players[playerTurn];
     }
@@ -94,7 +98,7 @@ public class Game {
         board[from.getY()][from.getX()] = new VacantTile(from.getX(), from.getY());
     }
 
-    public int getPlayerTurn() {
+    int getPlayerTurn() {
         return playerTurn;
     }
 }

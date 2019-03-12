@@ -24,7 +24,7 @@ public class App {
 
         System.out.println("Starting game...");
         game.start(playerName1, playerName2);
-        System.out.println("Engine.Game started!");
+        System.out.println("Game started!");
 
         game.printBoard();
 

@@ -9,18 +9,18 @@ class MoveChecker implements IMoveRules {
         this.to = move.getTo();
     }
 
-    public Tile getFrom() {
+    Tile getFrom() {
         return from;
     }
 
-    public Tile getTo() {
+    Tile getTo() {
         return to;
     }
 
     @Override
     public void checkDiagonal() throws DirectionException {
         if (Math.abs(to.getX() - from.getX()) != Math.abs(to.getY() - from.getY())) {
-            throw new DirectionException("Engine.Move is not diagonal");
+            throw new DirectionException("Move is not diagonal");
         }
     }
 

@@ -1,8 +1,10 @@
-class Move {
+package Engine;
+
+public class Move {
     private Tile from;
     private Tile to;
 
-    protected Move(Tile from, Tile to) {
+    public Move(Tile from, Tile to) {
         this.from = from;
         this.to = to;
     }
@@ -14,7 +16,6 @@ class Move {
     public Tile getTo() {
         return to;
     }
-
 
 
 }

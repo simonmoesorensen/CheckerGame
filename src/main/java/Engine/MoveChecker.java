@@ -1,3 +1,5 @@
+package Engine;
+
 class MoveChecker implements IMoveRules {
     private Tile from;
     private Tile to;
@@ -18,7 +20,7 @@ class MoveChecker implements IMoveRules {
     @Override
     public void checkDiagonal() throws DirectionException {
         if (Math.abs(to.getX() - from.getX()) != Math.abs(to.getY() - from.getY())) {
-            throw new DirectionException("Move is not diagonal");
+            throw new DirectionException("Engine.Move is not diagonal");
         }
     }
 

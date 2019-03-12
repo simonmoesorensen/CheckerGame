@@ -1,3 +1,5 @@
+package Engine;
+
 public class Game {
     private Player[] players = new Player[2];
     private Board board = new Board();
@@ -18,7 +20,7 @@ public class Game {
         }
     }
 
-    Tile getTile(int x, int y) throws TileOutOfBoundsException{
+    public Tile getTile(int x, int y) throws TileOutOfBoundsException {
         ITileRules.checkWall(x, y);
         return board.getBoard()[y][x];
 
@@ -54,6 +56,7 @@ public class Game {
     }
 
     // Probably should move these methods to a Mover class or something, but don't have time.
+    // As this is not the responsibility of the game logic itself.
     public boolean checkValidMove(Move move, Player player) {
         MoveChecker moveChecker = new MoveChecker(move);
         FromTileChecker fromTileChecker = new FromTileChecker(moveChecker.getFrom());
@@ -86,8 +89,8 @@ public class Game {
     private void movePiece(OccupiedTile from, Tile to) {
         Tile[][] board = this.board.getBoard();
         board[to.getY()][to.getX()] = new OccupiedTile(to.getX(),
-                                                        to.getY(),
-                                                        from.getPiece());
+                to.getY(),
+                from.getPiece());
         board[from.getY()][from.getX()] = new VacantTile(from.getX(), from.getY());
     }
 

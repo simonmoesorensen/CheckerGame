@@ -1,7 +1,9 @@
-final class BoardInitializer {
+package Engine;
+
+public final class BoardInitializer {
 
 
-    static void initializeBoard(Tile[][] board) {
+    public static void initializeBoard(Tile[][] board) {
         initializeBlackPieces(board);
         initializeWhitePieces(board);
         initializeVacantMiddle(board);
@@ -31,22 +33,22 @@ final class BoardInitializer {
         // In even y
         if (y % 2 == 1) {
             for (int x = 0; x < 8; x++) {
-                // In even x and even y OccupiedTile
+                // In even x and even y Engine.OccupiedTile
                 if (x % 2 == 1) {
                     board[y][x] = new OccupiedTile(x, y, new PlainPiece(color));
                 } else {
-                // In uneven x and even y fill VacantTile
+                    // In uneven x and even y fill Engine.VacantTile
                     board[y][x] = new VacantTile(x, y);
                 }
             }
         } else {
-        // In uneven y
+            // In uneven y
             for (int x = 0; x < 8; x++) {
-                // In uneven x and uneven y fill OccupiedTile
+                // In uneven x and uneven y fill Engine.OccupiedTile
                 if (x % 2 == 0) {
                     board[y][x] = new OccupiedTile(x, y, new PlainPiece(color));
                 } else {
-                    // In even x and uneven y fill VacantTile
+                    // In even x and uneven y fill Engine.VacantTile
                     board[y][x] = new VacantTile(x, y);
                 }
             }

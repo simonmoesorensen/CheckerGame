@@ -1,3 +1,5 @@
+package Engine;
+
 public class FromTileChecker extends TileChecker {
     FromTileChecker(Tile tile) {
         super(tile);
@@ -9,7 +11,7 @@ public class FromTileChecker extends TileChecker {
 
     public void checkOccupied() throws VacantTileException {
         if (this.getTile() instanceof VacantTile) {
-            throw new VacantTileException(String.format("Tile (%d, %d) is not a piece",
+            throw new VacantTileException(String.format("Engine.Tile (%d, %d) is not a piece",
                     this.getTile().getX() + 1, this.getTile().getY() + 1));
         }
     }

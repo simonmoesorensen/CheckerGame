@@ -1,3 +1,5 @@
+package Engine;
+
 class OccupiedTileException extends GameException {
     OccupiedTileException(String msg) {
         super(msg);

@@ -1,3 +1,5 @@
+package Engine;
+
 class GameException extends Exception {
     String msg;
 

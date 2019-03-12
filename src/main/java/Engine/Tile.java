@@ -1,7 +1,9 @@
-abstract class Tile {
+package Engine;
+
+public abstract class Tile {
+    private final Color color;
     private int x;
     private int y;
-    private final Color color;
 
     Tile(int x, int y, Color color) {
         this.x = x;

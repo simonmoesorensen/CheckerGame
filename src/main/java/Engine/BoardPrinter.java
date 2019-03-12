@@ -1,6 +1,8 @@
-class BoardPrinter {
+package Engine;
 
-    static void print(Tile[][] board) {
+public class BoardPrinter {
+
+    public static void print(Tile[][] board) {
         System.out.println("      [1] [2] [3] [4] [5] [6] [7] [8]  ");
         System.out.println("    +---------------------------------+");
         for (int y = 7; y >= 0; y--) {

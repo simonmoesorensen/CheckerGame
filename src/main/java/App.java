@@ -1,3 +1,8 @@
+import Engine.Game;
+import Engine.Move;
+import Engine.Tile;
+import Engine.TileOutOfBoundsException;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,7 +24,7 @@ public class App {
 
         System.out.println("Starting game...");
         game.start(playerName1, playerName2);
-        System.out.println("Game started!");
+        System.out.println("Engine.Game started!");
 
         game.printBoard();
 

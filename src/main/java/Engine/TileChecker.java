@@ -1,3 +1,5 @@
+package Engine;
+
 abstract class TileChecker implements ITileRules {
     private Tile tile;
 

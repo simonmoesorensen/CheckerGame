@@ -1,11 +1,15 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
-        Game game = new Game();
+    private static Game game;
+    private static Scanner s;
 
-        Scanner s = new Scanner(System.in);
+    public static void main(String[] args) {
+        game = new Game();
+
+        s = new Scanner(System.in);
 
         System.out.print("Please enter player one's name: ");
         String playerName1 = s.next();
@@ -27,31 +31,59 @@ public class App {
 
             System.out.println("Coordinate of piece to move");
 
-            getCoordinates(s, from);
+            getCoordinates(from);
+
+            Tile fromTile = getTile(from);
 
             System.out.println("Coordinate of place to move");
 
-            getCoordinates(s, to);
+            getCoordinates(to);
+
+            Tile toTile = getTile(to);
 
             // Create new move object
-            Move move = new Move(game.getTile(from[0], from[1]), game.getTile(to[0], to[1]));
+            Move move = new Move(fromTile, toTile);
 
             // Validate move
             if (game.checkValidMove(move, game.getPlayer())) {
                 System.out.println("Moving piece..");
+
+                game.nextTurn();
+
+            } else {
+                System.out.println("Try again");
             }
 
-            game.nextTurn();
             game.printBoard();
+
         }
+
+        game.stop();
 
     }
 
-    private static void getCoordinates(Scanner s, int[] coordinates) {
-        System.out.print("    Enter X : ");
-        coordinates[0] = s.nextInt() - 1;
+    private static Tile getTile(int[] from) {
+        try {
+            return game.getTile(from[0], from[1]);
+        } catch (TileOutOfBoundsException e) {
+            System.out.println(e);
+            System.out.println("Try again");
+            getCoordinates(from);
+            return getTile(from);
+        }
+    }
 
-        System.out.print("    Enter Y : ");
-        coordinates[1] = s.nextInt() - 1;
+    private static void getCoordinates(int[] coordinates) {
+        try {
+            System.out.print("    Enter X : ");
+            coordinates[0] = s.nextInt() - 1;
+
+            System.out.print("    Enter Y : ");
+            coordinates[1] = s.nextInt() - 1;
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong input, try again");
+            s.next();
+            getCoordinates(coordinates);
+        }
     }
 }

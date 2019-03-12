@@ -3,8 +3,6 @@ public class Game {
     private Board board = new Board();
     private int playerTurn = 0;
 
-    // TODO: Insert game logic
-
     // TODO: Unit testing
 
     public void nextTurn() {
@@ -20,8 +18,10 @@ public class Game {
         }
     }
 
-    public Tile getTile(int x, int y) {
+    Tile getTile(int x, int y) throws TileOutOfBoundsException{
+        ITileRules.checkWall(x, y);
         return board.getBoard()[y][x];
+
     }
 
     public Player getPlayer() {
@@ -53,31 +53,41 @@ public class Game {
         players = null;
     }
 
+    // Probably should move these methods to a Mover class or something, but don't have time.
     public boolean checkValidMove(Move move, Player player) {
         MoveChecker moveChecker = new MoveChecker(move);
-        TileChecker tileCheckerFrom = new TileChecker(moveChecker.getFrom());
-        TileChecker tileCheckerTo = new TileChecker(moveChecker.getTo());
+        FromTileChecker fromTileChecker = new FromTileChecker(moveChecker.getFrom());
+        ToTileChecker toTileChecker = new ToTileChecker(moveChecker.getTo());
+
+        // Check tiles
+        if (!fromTileChecker.checkRules()) return false;
+        if (!toTileChecker.checkRules()) return false;
 
         // Check ownership
+        if (!(checkOwnership(player, fromTileChecker))) return false;
+
+        // Check that all rules apply
+        if (!(toTileChecker.checkRules() && moveChecker.checkRules())) return false;
+
+        movePiece((OccupiedTile) moveChecker.getFrom(), moveChecker.getTo());
+        return true;
+    }
+
+    private boolean checkOwnership(Player player, FromTileChecker fromTileChecker) {
         try {
-            tileCheckerFrom.isOwner(((OccupiedTile) tileCheckerFrom.getTile()).getPiece(), player);
+            fromTileChecker.checkOwner(((OccupiedTile) fromTileChecker.getTile()).getPiece(), player);
         } catch (PieceOwnershipException e) {
             System.out.println(e);
             return false;
         }
-
-        // Check that all rules apply
-        if (!(moveChecker.checkRules() && tileCheckerTo.checkRules())) {
-            return false;
-        }
-
-        movePiece(moveChecker.getFrom(), moveChecker.getTo());
         return true;
     }
 
-    private void movePiece(Tile from, Tile to) {
+    private void movePiece(OccupiedTile from, Tile to) {
         Tile[][] board = this.board.getBoard();
-        board[to.getY()][to.getX()] = board[from.getY()][from.getX()];
+        board[to.getY()][to.getX()] = new OccupiedTile(to.getX(),
+                                                        to.getY(),
+                                                        from.getPiece());
         board[from.getY()][from.getX()] = new VacantTile(from.getX(), from.getY());
     }
 

@@ -1,5 +1,8 @@
 interface ITileRules extends IRules {
-    void isOwner(Piece piece, Player player) throws PieceOwnershipException;
-    void checkWall() throws TileOutOfBoundsException;
-    void checkVacancy() throws OccupiedTileException;
+    static void checkWall(int x, int y) throws TileOutOfBoundsException {
+        if (((y > 7) || (y < 0)) || ((x > 7) || (x < 0))) {
+            throw new TileOutOfBoundsException(String.format("Tile (%d, %d) is out of bounds",
+                    x + 1, y + 1));
+        }
+    }
 }

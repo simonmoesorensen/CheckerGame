@@ -1,7 +1,7 @@
 class BoardPrinter {
 
     static void print(Tile[][] board) {
-        System.out.println("      [A] [B] [C] [D] [E] [F] [G] [H]  ");
+        System.out.println("      [1] [2] [3] [4] [5] [6] [7] [8]  ");
         System.out.println("    +---------------------------------+");
         for (int y = 7; y >= 0; y--) {
             System.out.print("[" + (y + 1) + "]" + " | ");

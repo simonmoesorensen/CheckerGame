@@ -3,6 +3,10 @@ class Player {
     private int score = 0;
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
     public Player(Color color, String name) {
         this.color = color;
         this.name = name;

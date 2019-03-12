@@ -9,4 +9,8 @@ class OccupiedTile extends Tile {
     public String toString() {
         return piece.toString();
     }
+
+    public Piece getPiece() {
+        return piece;
+    }
 }

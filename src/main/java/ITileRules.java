@@ -1,4 +1,5 @@
 interface ITileRules extends IRules {
-    // TODO: Make rules for tiles before moving
-    void checkOwnership(Piece piece, Player player);
+    void isOwner(Piece piece, Player player) throws PieceOwnershipException;
+    void checkWall() throws TileOutOfBoundsException;
+    void checkVacancy() throws OccupiedTileException;
 }

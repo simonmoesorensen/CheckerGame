@@ -1,4 +1,4 @@
-class OccupiedTileException extends Exception {
+class OccupiedTileException extends GameException {
     OccupiedTileException(String msg) {
         super(msg);
     }

@@ -1,3 +1,3 @@
 interface IRules {
-    void checkRules();
+    boolean checkRules();
 }
